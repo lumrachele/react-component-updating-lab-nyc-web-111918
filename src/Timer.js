@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 
+// instead of using shouldComponentUpdate, just do PureComponent
+
+
+// import React, { PureComponent } from 'react';
+//
+// class Timer extends PureComponent {
+//   ...
+// }
+
 class Timer extends Component {
 
   constructor() {
@@ -14,7 +23,16 @@ class Timer extends Component {
 
 
   //Your code here
+  componentDidUpdate(){
+    this.timer.current.style.color = '#'+Math.floor(Math.random()*16777215).toString(16)
+  }
 
+  shouldComponentUpdate(nextState){
+    if (this.state.time === nextState.time) {
+      return false
+    }
+    return true
+  }
 
 
   componentDidMount() {
